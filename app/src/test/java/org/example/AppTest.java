@@ -7,4 +7,32 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
+    @Test
+    void testCompressionDecompression() {
+        String text = "Hello World!";
+        HuffmanTree tree = new HuffmanTree(text);
+
+        String compressed = tree.compress(text);
+        String decompressed = tree.decompress(compressed);
+        assertEquals(text, decompressed);
+    }
+
+    @Test
+    void testEmptyString() {
+        HuffmanTree tree = new HuffmanTree("");
+        assertEquals("", tree.compress(""));
+        assertEquals("", tree.decompress(""));
+    }
+
+    @Test
+    void testCodeTableContainsAllCharacters() {
+        String text = "Hello";
+        HuffmanTree tree = new HuffmanTree(text);
+
+        assertEquals(4, tree.getCodeTable().size());
+        assertTrue(tree.getCodeTable().containsKey('H'));
+        assertTrue(tree.getCodeTable().containsKey('e'));
+        assertTrue(tree.getCodeTable().containsKey('l'));
+        assertTrue(tree.getCodeTable().containsKey('o'));
+    }
 }
