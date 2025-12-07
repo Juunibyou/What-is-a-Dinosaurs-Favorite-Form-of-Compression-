@@ -5,5 +5,19 @@ package org.example;
 
 public class App {
     public static void main(String[] args) {
+        String word = "Hello World!";
+
+        HuffmanTree huffmanTree = new HuffmanTree(word);
+
+        System.out.println("|---- Huffman Coding ----|");
+        huffmanTree.printCodeTable();
+        System.out.println();
+        
+        String compressed = huffmanTree.compress(word);
+        String decompressed = huffmanTree.decompress(compressed);  
+
+        System.out.println("Original: " + word);
+        System.out.println("Compressed: " + compressed);
+        System.out.println("Decompressed: " + decompressed);
     }
 }

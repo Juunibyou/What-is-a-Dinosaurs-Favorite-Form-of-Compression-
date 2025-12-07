@@ -4,10 +4,11 @@ import java.util.*;
 
 public class HuffmanTree {
     private Node root;
+    private Map<Character, Integer> freqMap;
     private Map<Character, String> codeTable;
 
     public HuffmanTree(String text) {
-        Map<Character, Integer> freqMap = buildFrequencyMap(text);
+        this.freqMap = buildFrequencyMap(text);   // SAVE IT
         this.root = buildHuffmanTree(freqMap);
         this.codeTable = new HashMap<>();
         buildCodeTable(this.root, "", this.codeTable);
@@ -68,9 +69,9 @@ public class HuffmanTree {
         return decompressed.toString();
     }
 
-    public void printCodeTable(Map <Character, Integer> freqMap) {
+    public void printCodeTable() {
         System.out.println("Symbol\tFrequency\tHuffman Code");
-        for (char c : codeTable.keySet()){
+        for (char c : codeTable.keySet()) {
             String displayChar = (c == ' ') ? "space" : String.valueOf(c);
             System.out.println(displayChar + "\t" + freqMap.get(c) + "\t\t" + codeTable.get(c));
         }
